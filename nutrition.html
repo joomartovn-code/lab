@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Питание - FitZone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="logo" href="index.html">FIT<span>ZONE</span></a>
+            <button id="burger" aria-label="Меню">☰</button>
+            <div id="menu" class="menu">
+                <a href="index.html">Главная</a><a href="about.html">О клубе</a><a href="workouts.html">Тренировки</a><a href="nutrition.html" class="active">Питание</a><a href="trainers.html">Тренеры</a><a href="schedule.html">Расписание</a><a href="pricing.html">Цены</a><a href="blog.html">Блог</a><a href="gallery.html">Галерея</a><a href="contact.html">Контакты</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero"><div class="hero-inner"><div class="hero-text"><h1>Питание</h1><p>Результат на 70% зависит от того, что ты ешь</p></div></div></section>
+
+    <main>
+        <h2>Калькулятор ИМТ</h2><div class="box"><label>Вес (кг)</label><input type="number" id="weight"><label>Рост (см)</label><input type="number" id="height"><button onclick="calcBMI()">Рассчитать</button><div class="result" id="bmiResult">Результат появится здесь</div></div><h2>Основы питания</h2><div class="cards"><div class="card "><img class="icon" src="images/icon-apple.svg" alt=""><h3>Белок</h3><p>1,6-2 г на кг веса для восстановления мышц.</p></div><div class="card "><img class="icon" src="images/icon-heart.svg" alt=""><h3>Вода</h3><p>Около 30 мл на кг веса в день.</p></div><div class="card "><img class="icon" src="images/icon-clock.svg" alt=""><h3>Режим</h3><p>3-5 приемов пищи, не пропускай завтрак.</p></div></div><h2>Пример рациона</h2><div class="table-wrap"><table><tr><th>Прием пищи</th><th>Блюдо</th></tr><tr><td>Завтрак</td><td>Овсянка с бананом и яйцами</td></tr><tr><td>Обед</td><td>Гречка, курица, салат</td></tr><tr><td>Перекус</td><td>Творог с орехами</td></tr><tr><td>Ужин</td><td>Рыба с овощами</td></tr></table></div>
+    </main>
+
+    <footer>
+        <p>© 2026 FitZone. Бишкек</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
