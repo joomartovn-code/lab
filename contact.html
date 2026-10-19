@@ -22,7 +22,11 @@
     <section class="hero"><div class="hero-inner"><div class="hero-text"><h1>Контакты</h1><p>Запишись на бесплатное пробное занятие</p></div></div></section>
 
     <main>
-        <div class="two"><div><h2>Как нас найти</h2><p>Адрес: г. Бишкек, ул. Примерная, 1</p><p>Телефон: +996 700 000 000</p><p>Email: info@fitzone.kg</p><p>Работаем ежедневно с 6:00 до 23:00.</p></div><div><h2>Заявка</h2><form class="box" id="contactForm"><label>Имя</label><input type="text" id="name"><label>Телефон</label><input type="tel" id="phone"><label>Цель</label><select><option>Похудение</option><option>Набор массы</option><option>Выносливость</option></select><button type="submit">Отправить</button></form><div class="result" id="formResult">Здесь появится ответ</div></div></div>
+        <div class="two"><div><h2>Как нас найти</h2><p>Адрес: г. Бишкек, ул. Примерная, 1</p><p>Телефон: +996 700 000 000</p><p>Email: info@fitzone.kg</p><p>Работаем ежедневно с 6:00 до 23:00.</p></div><div><h2>Заявка</h2><form class="box" id="contactForm" novalidate>
+                <label for="name">ФИО</label><input type="text" id="name" placeholder="Иванов Иван Иванович"><span class="err" id="nameErr"></span>
+                <label for="phone">Телефон</label><input type="tel" id="phone" placeholder="+996 700 000 000"><span class="err" id="phoneErr"></span>
+                <label for="email">Почта</label><input type="email" id="email" placeholder="name@example.com"><span class="err" id="emailErr"></span>
+                <label>Цель</label><select><option>Похудение</option><option>Набор массы</option><option>Выносливость</option></select><button type="submit">Отправить</button></form><div class="result" id="formResult">Здесь появится ответ</div></div></div>
     </main>
 
     <footer>

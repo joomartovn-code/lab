@@ -204,24 +204,72 @@ pads.forEach(pad => {
 });
 
 
-// ===== Контакты: проверка формы =====
+// ===== Контакты: проверка формы (регулярные выражения) =====
+
+// ФИО: 2-3 слова кириллицей, каждое с заглавной буквы (дефис допускается)
+let regexName = /^[А-ЯЁҮӨҢ][а-яёүөң]+(?:-[А-ЯЁҮӨҢ][а-яёүөң]+)?(?:\s[А-ЯЁҮӨҢ][а-яёүөң]+(?:-[А-ЯЁҮӨҢ][а-яёүөң]+)?){1,2}$/;
+
+// Телефон: +996 или 0, затем 9 цифр (пробелы и дефисы необязательны)
+let regexPhone = /^(?:\+996|0)[\s-]?\d{3}[\s-]?\d{3}[\s-]?\d{3}$/;
+
+// Почта: имя@домен.зона
+let regexEmail = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+
 let contactForm = document.getElementById('contactForm');
 
+let formFields = [
+    { id: 'name', regex: regexName, message: 'Введите ФИО кириллицей: 2-3 слова с заглавной буквы (Иванов Иван Иванович)' },
+    { id: 'phone', regex: regexPhone, message: 'Формат: +996 700 000 000 или 0700 000 000' },
+    { id: 'email', regex: regexEmail, message: 'Введите корректную почту, например name@example.com' }
+];
+
+function checkField(field) {
+    let input = document.getElementById(field.id);
+    let error = document.getElementById(field.id + 'Err');
+    let ok = field.regex.test(input.value.trim());
+
+    input.classList.toggle('valid', ok);
+    input.classList.toggle('invalid', !ok);
+    error.textContent = ok ? '' : field.message;
+
+    return ok;
+}
+
 if (contactForm) {
+    formFields.forEach(field => {
+        let input = document.getElementById(field.id);
+
+        input.addEventListener('blur', () => checkField(field));
+        input.addEventListener('input', () => {
+            if (input.classList.contains('invalid')) {
+                checkField(field);
+            }
+        });
+    });
+
     contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        let name = document.getElementById('name').value.trim();
-        let phone = document.getElementById('phone').value.trim();
+        let result = document.getElementById('formResult');
+        let allOk = formFields.map(checkField).every(ok => ok);
 
-        if (name === '' || phone === '') {
-            alert('Заполните имя и телефон!');
-        } else {
-            document.getElementById('formResult').innerHTML = `
+        if (allOk) {
+            let name = document.getElementById('name').value.trim();
+            let phone = document.getElementById('phone').value.trim();
+            let email = document.getElementById('email').value.trim();
+
+            result.className = 'result ok';
+            result.innerHTML = `
                 <h3>Заявка отправлена</h3>
-                <p>Спасибо, ${name}! Мы позвоним на номер ${phone}.</p>
+                <p>Спасибо, ${name}! Мы позвоним на номер ${phone} или напишем на ${email}.</p>
             `;
             contactForm.reset();
+            formFields.forEach(field => {
+                document.getElementById(field.id).classList.remove('valid');
+            });
+        } else {
+            result.className = 'result bad';
+            result.textContent = 'Исправьте ошибки в форме';
         }
     });
 }

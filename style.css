@@ -478,3 +478,30 @@ footer p {
         text-align: center;
     }
 }
+
+
+/* ---------- проверка формы ---------- */
+.err {
+    display: block;
+    min-height: 20px;
+    margin: -10px 0 8px;
+    color: #ff6b6b;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+input.invalid {
+    border-color: #ff6b6b;
+}
+
+input.valid {
+    border-color: #4caf50;
+}
+
+.result.ok {
+    border-left-color: #4caf50;
+}
+
+.result.bad {
+    border-left-color: #ff6b6b;
+}
